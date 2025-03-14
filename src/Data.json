@@ -1,0 +1,82 @@
+
+     [ {
+        "id": 1,
+        "name": "Classic Denim Jacket",
+        "category": "Jackets",
+        "brand": "Levi's",
+        "price": 79.99,
+        "image": "https://plus.unsplash.com/premium_photo-1707816501228-1d814ad62d7b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8TGV2aSdzJTIwQ2xhc3NpYyUyMERlbmltJTIwSmFja2V0fGVufDB8fDB8fHww"
+      },
+      {
+        "id": 2,
+        "name": "Slim Fit Chinos",
+        "category": "Pants",
+        "brand": "Zara",
+        "price": 49.99,
+        "image": "https://static.zara.net/assets/public/8c97/913d/6e78485595b6/0a2c06eb6a46/05616106711-a4/05616106711-a4.jpg?ts=1740498291989&w=835"
+      },
+      {
+        "id": 3,
+        "name": "Graphic T-Shirt",
+        "category": "TShirts",
+        "brand": "H&M",
+        "price": 19.99,
+        "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhxXGv811yQEIXzQeeeSM5m4bF4LC5Erk-xPf3JdxUaDLVqkm0WS7m19U90oz9_YRfeEGyMdmCijuLp5J8pB3gnEXPoNSCcB15OGX0cjBFDlCRESGcZcSw"
+      },
+      {
+        "id": 4,
+        "name": "Leather Wallet",
+        "category": "Accessories",
+        "brand": "Tommy Hilfiger",
+        "price": 39.99,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjSbFnbLnjlbN990mSlzaYAz8bNaS28TcsfA&s"
+      },
+      {
+        "id": 5,
+        "name": "Running Shoes",
+        "category": "Footwear",
+        "brand": "Nike",
+        "price": 89.99,
+        "image": "https://example.com/images/running-shoes.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Sunglasses",
+        "category": "Accessories",
+        "brand": "RayBan",
+        "price": 129.99,
+        "image": "https://example.com/images/sunglasses.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Winter Beanie",
+        "category": "Hats",
+        "brand": "Adidas",
+        "price": 25.99,
+        "image": "https://example.com/images/winter-beanie.jpg"
+      },
+      {
+        "id": 8,
+        "name": "Formal Blazer",
+        "category": "Blazers",
+        "brand": "Armani",
+        "price": 199.99,
+        "image": "https://example.com/images/formal-blazer.jpg"
+      },
+      {
+        "id": 9,
+        "name": "Sports Watch",
+        "category": "Accessories",
+        "brand": "Casio",
+        "price": 59.99,
+        "image": "https://example.com/images/sports-watch.jpg"
+      },
+      {
+        "id": 10,
+        "name": "Casual Sneakers",
+        "category": "Footwear",
+        "brand": "Puma",
+        "price": 69.99,
+        "image": "https://example.com/images/casual-sneakers.jpg"
+      }]
+  
