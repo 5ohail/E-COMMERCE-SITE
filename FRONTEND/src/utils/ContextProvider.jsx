@@ -60,7 +60,7 @@ const ContextProvider = ({ children }) => {
   // 💾 Save cart to DB when cart changes (and user is logged in)
   useEffect(() => {
     const saveCart = async () => {
-      if (user && cart.length > 0) {
+      if (user) {
         try {
           await axios.post("http://localhost:8080/api/products/cart/add", {
             username: user,

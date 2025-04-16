@@ -1,16 +1,23 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Context } from '../utils/ContextProvider';
-
 const Navbar = () => {
   const [active, setActive] = useState(null);
+  const {isloggedin} = useContext(Context)
   const {itemsAdded,setitemAdded} = useContext(Context);
   const logout = () => {
     localStorage.removeItem("token"); // Remove token
     localStorage.removeItem("user");
     localStorage.removeItem("cart")
     navigate("/login"); // Redirect to login page
-};
+};    
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/login") {
+      setActive("login");
+    }
+  }, [location.pathname, setActive]);
 
   return (
     <nav className='bg-[#ffffff] text-[#000] flex justify-between items-center px-5 py-2'>
@@ -25,6 +32,15 @@ const Navbar = () => {
             to='/'
           >
             HOME
+          </Link>
+        </li>
+        <li>
+          <Link
+            onClick={() => setActive('product')}
+            className={`text-[1rem] ${active === 'product' ? 'border-b-[1px] border-b-black' : ''} px-3 py-2`}
+            to='/product'
+          >
+            PRODUCT
           </Link>
         </li>
         <li>
@@ -48,7 +64,7 @@ const Navbar = () => {
         <li>
           <Link
             onClick={() => setActive('login')}
-            className={`text-[1rem] ${active === 'login' ? 'bg-black text-white' : 'text-black'} px-3 py-2 `}
+            className={`text-[1rem] rounded ${active === 'login' ? 'bg-black text-white' : 'text-black'} px-3 py-2 `}
             to='/login'
           >
             SIGN-IN
