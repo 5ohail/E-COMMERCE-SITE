@@ -1,16 +1,16 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import Cart from "../pages/Cart";
 
 export const Context = createContext();
 
 const ContextProvider = ({ children }) => {
   const [isloggedin, setisloggedin] = useState(false);
   const [Data, setData] = useState([]);
-  const [user, setUser] = useState(() => localStorage.getItem("user") || ""); // ✅ Load user from localStorage
+  const [user, setUser] = useState(() => localStorage.getItem("user") || "");
   const [cart, setCart] = useState([]);
   const [itemsAdded, setItemsAdded] = useState(0);
-  
+  const [cartFetched, setCartFetched] = useState(false); // 🆕 Added flag
+
   // 🛍️ Fetch product data once on mount
   useEffect(() => {
     const fetchData = async () => {
@@ -24,43 +24,37 @@ const ContextProvider = ({ children }) => {
 
     fetchData();
   }, []);
-  
+
   useEffect(() => {
     // Calculate the total number of items in the cart whenever it changes
-    const fetchItemsAdded = () => {
-      let total = cart.length;
-      setItemsAdded(total);
-    };
-    fetchItemsAdded();
+    setItemsAdded(cart.length);
   }, [cart]);
 
   // 🛒 Fetch saved cart from DB on user login
   useEffect(() => {
     if (user) {
-      localStorage.setItem("user", user);  // Save user to localStorage
+      localStorage.setItem("user", user);
       const fetchCart = async () => {
         try {
           const res = await axios.get(
             `http://localhost:8080/api/products/cart/add?username=${user}`
           );
           console.log("Fetched Cart from DB:", res.data);
-          setCart(res.data.cart || []);  // Set cart data or empty array if not found
+          setCart(res.data.cart || []);
+          setCartFetched(true); // ✅ Flag after cart fetched
         } catch (err) {
           console.error("Error fetching cart:", err);
         }
       };
 
-      fetchCart();  // Fetch the cart only if the user is logged in
+      fetchCart();
     }
   }, [user]);
-  useEffect(()=>{
-    console.log(cart)
-  },[cart])
 
-  // 💾 Save cart to DB when cart changes (and user is logged in)
+  // 💾 Save cart to DB — only after it's fetched
   useEffect(() => {
     const saveCart = async () => {
-      if (user) {
+      if (user && cartFetched) {
         try {
           await axios.post("http://localhost:8080/api/products/cart/add", {
             username: user,
@@ -72,8 +66,8 @@ const ContextProvider = ({ children }) => {
       }
     };
 
-    saveCart();  // Save the cart only when it changes
-  }, [cart, user]);  // Only run when `cart` or `user` changes
+    saveCart();
+  }, [cart, user, cartFetched]);
 
   return (
     <Context.Provider
@@ -86,7 +80,7 @@ const ContextProvider = ({ children }) => {
         isloggedin,
         setisloggedin,
         itemsAdded,
-        setItemsAdded
+        setItemsAdded,
       }}
     >
       {children}
