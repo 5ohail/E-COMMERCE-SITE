@@ -10,7 +10,7 @@ const ContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [itemsAdded, setItemsAdded] = useState(0);
   const [cartFetched, setCartFetched] = useState(false); // 🆕 Added flag
-
+  const [isActiveOn,setIsActiveOn] = useState(false)
   // 🛍️ Fetch product data once on mount
   useEffect(() => {
     const fetchData = async () => {
@@ -81,6 +81,8 @@ const ContextProvider = ({ children }) => {
         setisloggedin,
         itemsAdded,
         setItemsAdded,
+        isActiveOn,
+        setIsActiveOn
       }}
     >
       {children}

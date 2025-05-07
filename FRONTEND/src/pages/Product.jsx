@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import Products from '../components/Products'
 import { Context } from '../utils/ContextProvider'
 const Product = () => {
-    const { Data } = useContext(Context)
-    
+    const { Data } = useContext(Context);
+   
   return (
     <>
     <div className='flex w-auto flex-wrap my-14 gap-4 ml-14'>

@@ -1,16 +1,37 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Context } from '../utils/ContextProvider';
 const Navbar = () => {
   const [active, setActive] = useState(null);
-  const {isloggedin} = useContext(Context)
-  const {itemsAdded,setitemAdded} = useContext(Context);
+  const [search,setSearch] = useState(false);
+  const [list,setList] = useState(null);
+  const [searchData,setSearchData] = useState([]);
+  const {itemsAdded,setitemAdded,Data,isActiveOn,setIsActiveOn} = useContext(Context);
+  const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("token"); // Remove token
     localStorage.removeItem("user");
     localStorage.removeItem("cart")
     navigate("/login"); // Redirect to login page
 };    
+const handleNavigate = (itemName) =>{
+  console.log(itemName)
+  localStorage.setItem("activeProduct", JSON.stringify({ ...itemName,src:itemName.image }))
+  navigate(`/product/${encodeURIComponent(itemName.name)}`)
+  setSearch(false);
+}
+  //search functionality
+    const searchList = () => {
+      const arr = Data.filter(item => 
+        item.name.toLowerCase().includes(list.toLowerCase())
+      );
+      setSearchData(arr);
+      console.log(searchData);
+    }
+    console.log(isActiveOn);
+
+  
+ 
   const location = useLocation();
 
   useEffect(() => {
@@ -27,8 +48,12 @@ const Navbar = () => {
       <ul className='list-none flex gap-8 justify-center items-center py-4'>
         <li>
           <Link
-            onClick={() => setActive(null)}
-            className={`text-[1rem] ${active === null ? 'border-b-[1px] border-b-black' : ''} px-3 py-2`}
+            onClick={() => {
+              setActive(null);
+              setIsActiveOn(false);
+              console.log(isActiveOn)
+            }}
+            className={`text-[1rem] ${active === null && !isActiveOn ? 'border-b-[1px] border-b-black' : ''} px-3 py-2`}
             to='/'
           >
             HOME
@@ -37,7 +62,7 @@ const Navbar = () => {
         <li>
           <Link
             onClick={() => setActive('product')}
-            className={`text-[1rem] ${active === 'product' ? 'border-b-[1px] border-b-black' : ''} px-3 py-2`}
+            className={`text-[1rem] ${active === 'product' || isActiveOn ? 'border-b-[1px] border-b-black' : ''} px-3 py-2`}
             to='/product'
           >
             PRODUCT
@@ -45,17 +70,11 @@ const Navbar = () => {
         </li>
         <li>
           <Link
-            onClick={() => setActive('about')}
-            className={`text-[1rem] ${active === 'about' ? 'border-b-[1px] border-b-black' : ''} px-3 py-2 `}
-            to='/about'
-          >
-            ABOUT
-          </Link>
-        </li>
-        <li>
-          <Link
-            onClick={() => setActive('contact')}
-            className={`text-[1rem] ${active === 'contact' ? 'border-b-[1px] border-b-black' : ''} px-3 py-2`}
+            onClick={() => {
+              setActive('contact');
+              setIsActiveOn(false)
+            }}
+            className={`text-[1rem] ${active === 'contact' && !isActiveOn? 'border-b-[1px] border-b-black' : ''} px-3 py-2`}
             to='/contact'
           >
             CONTACT
@@ -63,8 +82,11 @@ const Navbar = () => {
         </li>
         <li>
           <Link
-            onClick={() => setActive('login')}
-            className={`text-[1rem] rounded ${active === 'login' ? 'bg-black text-white' : 'text-black'} px-3 py-2 `}
+            onClick={() => {
+              setActive('login');
+              setIsActiveOn(false)
+            }}
+            className={`text-[1rem] rounded ${active === 'login' && !isActiveOn ? 'bg-black text-white' : 'text-black'} px-3 py-2 `}
             to='/login'
           >
             SIGN-IN
