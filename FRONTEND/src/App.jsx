@@ -9,6 +9,7 @@ import Cart from './pages/Cart'
 import Product from './pages/Product'
 import ProtectedRoute from './components/ProtectedRoute'
 import Register from './pages/Register'
+import ProductDetails from './pages/ProductDetail'
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
           } 
         />
         <Route path='/register' element={<Register/>}/>
+        <Route path='/product/:name' element={<ProductDetails/>}/>
       </Routes>
       </Router>
     </>

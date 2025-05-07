@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import axios from "axios";
 import { Context } from "../utils/ContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const Products = (props) => {
   const { id, brand, name, category, src, price } = props;
@@ -9,6 +10,7 @@ const Products = (props) => {
   const truncatedName = brand.length + name.length > maxLen 
     ? name.slice(0, maxLen - brand.length) + "..." 
     : name;
+    const Navigate = useNavigate();
     const handleAddToCart = (item) => {
       setCart((prevCart) => {
         const existingItem = prevCart.find(cartItem => cartItem.name === item.name); // Check if item already exists in the cart
@@ -26,13 +28,19 @@ const Products = (props) => {
       });
     };
     
+    const handleRedirect = (item) =>{
+      console.log({...props})
+      localStorage.setItem("activeProduct",JSON.stringify({ ...props}));
+      Navigate(`/product/${name}`);
+      
+    }
     
 
 
   return (
     <div id={id} className="card mt-5 border border-gray-300 rounded">
       <div className="card-img h-64 w-64 overflow-hidden">
-        <img src={src} className="h-64 w-64 object-cover object-top" alt="product" />
+        <img src={src} className="h-64 w-64 object-cover object-top" alt="product" onClick={()=> handleRedirect(props)}/>
       </div>
       <h1 className="font-semibold text-xl px-3 pt-2">{brand} {truncatedName}</h1>
       <h4 className="text-md font-light text-gray-400 px-3">{category}</h4>
