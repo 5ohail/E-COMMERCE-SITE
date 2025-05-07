@@ -28,7 +28,6 @@ const handleNavigate = (itemName) =>{
       setSearchData(arr);
       console.log(searchData);
     }
-    console.log(isActiveOn);
 
   
  
