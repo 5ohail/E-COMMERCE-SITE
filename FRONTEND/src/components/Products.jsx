@@ -31,8 +31,7 @@ const Products = (props) => {
     const handleRedirect = (item) =>{
       console.log({...props})
       localStorage.setItem("activeProduct",JSON.stringify({ ...props}));
-      Navigate(`/product/${name}`);
-      
+      Navigate(`/product/${encodeURIComponent(name)}`);
     }
     
 

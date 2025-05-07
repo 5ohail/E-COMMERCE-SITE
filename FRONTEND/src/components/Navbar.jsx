@@ -44,7 +44,7 @@ const handleNavigate = (itemName) =>{
       <div className="font-semibold text-3xl">
         <h1 className='logo'>Luxora</h1>
       </div>
-      <ul className='list-none flex gap-8 justify-center items-center py-4'>
+      {search ? <input type="text" className=' font-light px-2 outline-neutral-300 my-[0.9rem] w-[65vw] py-[0.49rem] border-[1px] border-gray-300' placeholder='search'/> : <ul className='list-none flex gap-8 justify-center items-center py-4'>
         <li>
           <Link
             onClick={() => {
@@ -98,13 +98,13 @@ const handleNavigate = (itemName) =>{
           >
             Log Out
           </Link>
-      </ul>
+      </ul> }
       <div className='accessories flex items-center gap-6 px-4'>
-       <img src="search.svg" className='w-7' alt="Search" />
+       <img src="/search.svg" className='w-7 cursor-pointer' alt="Search"  onClick={()=>{setSearch(!search)}}/>
         <div className='line'></div>
         <Link to='/cart'>
         <div className='relative'>
-        <img src="cart.svg" className='w-7' alt="Cart" /> 
+        <img src="/cart.svg" className='w-7' alt="Cart" /> 
           {itemsAdded ? (
             <div className='item-num bg-red-500 text-[0.8rem] text-white rounded-full w-4 h-4 flex justify-center items-center'>
               {itemsAdded}
