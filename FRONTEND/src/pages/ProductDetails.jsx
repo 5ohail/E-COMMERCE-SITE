@@ -105,13 +105,13 @@ const ProductDetails = () => {
           <p className="text-xl text-gray-700 mb-2">
             Brand: <span className="font-normal text-gray-500">{product.brand}</span>
           </p>
-          <p className="text-xl text-gray-700 mb-6">
+          <p className="text-xl text-gray-700 mb-4">
             Price:{" "}
             <span className="text-green-600 font-semibold">
               ${product.price}
             </span>
           </p>
-          <p className="text-xl text-gray-600 mb-6">{description}</p>
+          <p className="text-xl text-gray-600 mb-4">{description}</p>
           <div className="flex items-center mb-6">
             <p className="text-xl text-gray-700 mr-2">Rating:</p>
             <div className="text-yellow-400 text-2xl">{"★★★★★"}</div>
@@ -137,10 +137,10 @@ const ProductDetails = () => {
           
           {/* Action Buttons */}
           <div className="flex gap-4">
-            <button className="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
+            <button className="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition cursor-pointer">
               Buy Now
             </button>
-            <button className="bg-black text-white px-6 py-3 rounded hover:bg-gray-700 transition" onClick={()=>handleAddToCart(product)}>
+            <button className="bg-black text-white px-6 py-3 rounded hover:bg-gray-700 transition cursor-pointer" onClick={()=>handleAddToCart(product)}>
               Add to Cart
             </button>
           </div>

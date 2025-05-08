@@ -9,7 +9,7 @@ import Cart from "./pages/Cart";
 import Product from "./pages/Product";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./pages/Register";
-import ProductDetails from "./pages/ProductDetail";
+import ProductDetails from "./pages/ProductDetails";
 import UserDashboard from "./pages/UserDashboard";
 
 function App() {
