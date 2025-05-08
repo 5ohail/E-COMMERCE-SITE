@@ -49,6 +49,13 @@ userRouter.post('/register', async (req, res) => {
       res.status(500).json({ success: false, message: "Server error" });
     }
   });
+  userRouter.post('/users/data',async(req,res)=>{
+    const {username} = req.body
+    const user = await userModel.findOne({username:username});
+    res.json(user);
+  })
+
+
   
 
 export default userRouter;

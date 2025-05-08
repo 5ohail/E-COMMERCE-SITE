@@ -10,6 +10,7 @@ import Product from "./pages/Product";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./pages/Register";
 import ProductDetails from "./pages/ProductDetail";
+import UserDashboard from "./pages/UserDashboard";
 
 function App() {
   return (
@@ -62,6 +63,13 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route 
+          path="/user"
+          element={
+            <ProtectedRoute>
+             <UserDashboard/>
+          </ProtectedRoute>
+          }/>
         </Routes>
       </Router>
     </>

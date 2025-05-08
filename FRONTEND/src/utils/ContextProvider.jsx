@@ -7,6 +7,7 @@ const ContextProvider = ({ children }) => {
   const [isloggedin, setisloggedin] = useState(false);
   const [Data, setData] = useState([]);
   const [user, setUser] = useState(() => localStorage.getItem("user") || "");
+  const [email,setEmail] = useState();
   const [cart, setCart] = useState([]);
   const [itemsAdded, setItemsAdded] = useState(0);
   const [cartFetched, setCartFetched] = useState(false); // 🆕 Added flag
@@ -69,6 +70,20 @@ const ContextProvider = ({ children }) => {
     saveCart();
   }, [cart, user, cartFetched]);
 
+  useEffect(()=>{
+    const findEmail = async () => {
+    const userEmail = await axios.post("http://localhost:8080/api/user/users/data",{
+      username : user
+    }).then(obj => obj.data.email)
+    
+    setEmail(()=>userEmail);
+    
+    
+  }
+  findEmail()
+  },[user,email])
+
+
   return (
     <Context.Provider
       value={{
@@ -82,7 +97,9 @@ const ContextProvider = ({ children }) => {
         itemsAdded,
         setItemsAdded,
         isActiveOn,
-        setIsActiveOn
+        setIsActiveOn,
+        email,
+        setEmail
       }}
     >
       {children}
