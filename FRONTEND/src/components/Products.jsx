@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Products = (props) => {
   const { id, brand, name, category, src, price } = props;
-  const {setCart} = useContext(Context);
+  const {setCart,order,setOrder} = useContext(Context);
   const maxLen = 14;
   const truncatedName = brand.length + name.length > maxLen 
     ? name.slice(0, maxLen - brand.length) + "..." 
@@ -33,9 +33,28 @@ const Products = (props) => {
       localStorage.setItem("activeProduct",JSON.stringify({ ...props}));
       Navigate(`/product/${encodeURIComponent(name)}`);
     }
-    
-
-
+    const buyNow = () => {
+      // Check if the item exists in the order
+      const itemExists = order.find(e => e.name === name);
+  
+      if (itemExists) {
+        // If it exists, increment the quantity
+        const updatedOrder = order.map((e) => {
+          if (e.name === name) {
+            return { ...e, quantity: e.quantity + 1 };
+          }
+          return e;
+        });
+        setOrder(updatedOrder); // Update the order state
+      } else {
+        // If item doesn't exist, add new item with quantity 1
+        setOrder((prev) => [...prev, { ...props, quantity: 1 }]);
+      }
+    };
+  
+    useEffect(() => {
+      console.log(order);
+    }, [order]);
   return (
     <div id={id} className="card mt-5 border border-gray-300 rounded">
       <div className="card-img h-64 w-64 overflow-hidden">
@@ -51,7 +70,9 @@ const Products = (props) => {
         >
           Add to Cart
         </button>
-        <button className="text-white bg-black px-3 py-2 rounded text-sm cursor-pointer">
+        <button className="text-white bg-black px-3 py-2 rounded text-sm cursor-pointer"
+        onClick={()=>buyNow()}
+        >
           Buy Now
         </button>
       </div>

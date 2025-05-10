@@ -4,7 +4,7 @@ import CartCard from "../components/CartCard";
 import { Context } from "../utils/ContextProvider";
 
 const Cart = () => {
-  const { cart, setCart } = useContext(Context);
+  const { cart, setCart,order,setOrder } = useContext(Context);
   const cartData = localStorage.getItem("cartItem");
   console.log(cartData);
   const [Discount, setDiscount] = useState(20);
@@ -48,7 +48,32 @@ const Cart = () => {
         )
       );
     };
+    const orderProduct = () => {
+      if (cart.length !== 0) {
+        const updatedOrder = [...order];
     
+        cart.forEach((cartItem) => {
+          const index = updatedOrder.findIndex((orderItem) => orderItem.name === cartItem.name);
+    
+          if (index !== -1) {
+            // Item exists → increase quantity
+            updatedOrder[index].quantity += cartItem.quantity;
+          } else {
+            // New item → add to order
+            updatedOrder.push({ ...cartItem });
+          }
+        });
+    
+        setOrder(updatedOrder); // Update the state with merged items
+        console.log("order: ", updatedOrder); // Check the merged order
+        setCart([]); // Clear the cart after adding
+      } else {
+        setOrder([...order, ...cart]); // If cart is not empty, merge cart to order
+      }
+    };
+    
+    
+    console.log(order);
     
   
   
@@ -128,7 +153,9 @@ const Cart = () => {
             Need Help? <Link to='/contact' className="text-blue-500">Contact Us</Link>
           </h1>
           <div className="flex justify-center items-center mt-12">
-            <button className="bg-black text-white w-full mx-4 mt-3 py-3 rounded cursor-pointer">
+            <button className="bg-black text-white w-full mx-4 mt-3 py-3 rounded cursor-pointer"
+              onClick={()=>orderProduct()}
+            >
               Proceed to checkout
             </button>
           </div>

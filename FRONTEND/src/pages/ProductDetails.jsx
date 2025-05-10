@@ -71,7 +71,7 @@ const ProductDetails = () => {
     <div className="p-12">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-gray-400">
-        <Link to="/product" className="hover:underline">
+        <Link to="/product">
           Products
         </Link>
         <svg

@@ -159,6 +159,14 @@ const Navbar = () => {
       )}
 
       <div className="accessories flex items-center gap-6 px-4">
+        {search && list? 
+        <img src='/remove.svg'
+          className="absolute right-[22%] w-5 h-5 cursor-pointer"
+          onClick={
+            () => 
+            setList("")
+          }
+        /> : null }
         <img
           src="/search.svg"
           className="w-7 cursor-pointer"

@@ -11,7 +11,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./pages/Register";
 import ProductDetails from "./pages/ProductDetails";
 import UserDashboard from "./pages/UserDashboard";
-
 function App() {
   return (
     <>
@@ -70,6 +69,7 @@ function App() {
              <UserDashboard/>
           </ProtectedRoute>
           }/>
+          
         </Routes>
       </Router>
     </>
