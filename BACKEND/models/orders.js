@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const orderSchema = mongoose.Schema({
+const orderSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -9,9 +9,13 @@ const orderSchema = mongoose.Schema({
         type: [{ productId: String,name: String, brand: String, price: Number, category: String, src: String, quantity: Number }],
         default : []
     },
+    price : {
+        type: Number,
+        required : true
+    },
     paymentMethod:{
         type: String, 
-        enum: ['COD', 'UPI', 'Credit Card', 'Debit Card'], 
+        enum: ['COD', 'bank','UPI', 'Credit Card', 'Debit Card'], 
         required: true 
     },
     shippingAddress: {
@@ -24,5 +28,14 @@ const orderSchema = mongoose.Schema({
         postalCode: { type: String, required: true },
         country: { type: String, required: true }
       },
+      status:{
+        type: String,
+        enum:['deliverd','notDelivered'],
+        default: 'notDelivered',
+        required : true
+      },
       placedAt: { type: Date, default: Date.now }
     });
+
+    const orderModel = mongoose.model("Orders",orderSchema);
+    export default orderModel;

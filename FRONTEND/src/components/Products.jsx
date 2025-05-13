@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import axios from "axios";
 import { Context } from "../utils/ContextProvider";
 import { useNavigate } from "react-router-dom";
 
@@ -50,6 +49,7 @@ const Products = (props) => {
         // If item doesn't exist, add new item with quantity 1
         setOrder((prev) => [...prev, { ...props, quantity: 1 }]);
       }
+     if(location) Navigate('/buy');
     };
   
     useEffect(() => {

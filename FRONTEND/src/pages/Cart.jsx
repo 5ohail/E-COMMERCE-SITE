@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate,  } from "react-router-dom";
 import CartCard from "../components/CartCard";
 import { Context } from "../utils/ContextProvider";
 
@@ -17,6 +17,7 @@ const Cart = () => {
     });
     setPrice(total);
   };
+  const Navigate = useNavigate();
   // Function to remove an item from the cart
     const removeFromCart = (itemName) => {
      let updatedCart = cart.filter(item => item.name !== itemName)
@@ -51,6 +52,7 @@ const Cart = () => {
     const orderProduct = () => {
       if (cart.length !== 0) {
         const updatedOrder = [...order];
+        Navigate('/buy')
     
         cart.forEach((cartItem) => {
           const index = updatedOrder.findIndex((orderItem) => orderItem.name === cartItem.name);

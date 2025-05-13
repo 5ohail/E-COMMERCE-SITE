@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./pages/Register";
 import ProductDetails from "./pages/ProductDetails";
 import UserDashboard from "./pages/UserDashboard";
+import Buy from "./pages/Buy";
 function App() {
   return (
     <>
@@ -67,6 +68,13 @@ function App() {
           element={
             <ProtectedRoute>
              <UserDashboard/>
+          </ProtectedRoute>
+          }/>
+             <Route 
+          path="/buy"
+          element={
+            <ProtectedRoute>
+             <Buy/>
           </ProtectedRoute>
           }/>
           
