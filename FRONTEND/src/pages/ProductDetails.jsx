@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Context } from "../utils/ContextProvider";
 
 const ProductDetails = () => {
@@ -9,11 +9,10 @@ const ProductDetails = () => {
     const data = JSON.parse(localStorage.getItem("activeProduct") || "{}");
     setProduct(data);
   }, [item]);
-  console.log(product)
-
+  const Navigate = useNavigate();
   
 
-  const { Data, setCart,cart } = useContext(Context);
+  const { Data, setCart,order,cart,setOrder } = useContext(Context);
   const cartItem = cart.find((e)=>e.name === product.name);
   const quantity = cartItem?.quantity || 0;
   const increase = () => {
@@ -67,6 +66,22 @@ const ProductDetails = () => {
 
   const foundProduct = Data.find((e) => e.name === product.name);
   const description = foundProduct?.description || "";
+  const buyNow = () => {
+  const itemExists = order.find(e => e.name === product.name);
+
+  if (itemExists) {
+    const updatedOrder = order.map(e =>
+      e.name === product.name ? { ...e, quantity: e.quantity + 1 } : e
+    );
+    setOrder(updatedOrder);
+  } else {
+    setOrder(prev => [...prev, { ...product, quantity: 1 }]);
+  }
+
+  Navigate("/buy");
+};
+
+  
   return (
     <div className="p-12">
       {/* Breadcrumb */}
@@ -137,7 +152,8 @@ const ProductDetails = () => {
           
           {/* Action Buttons */}
           <div className="flex gap-4">
-            <button className="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition cursor-pointer">
+            <button className="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition cursor-pointer"
+            onClick={()=>buyNow()}>
               Buy Now
             </button>
             <button className="bg-black text-white px-6 py-3 rounded hover:bg-gray-700 transition cursor-pointer" onClick={()=>handleAddToCart(product)}>

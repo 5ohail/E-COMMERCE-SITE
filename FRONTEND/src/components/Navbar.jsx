@@ -7,7 +7,7 @@ const Navbar = () => {
   const [search, setSearch] = useState(false);
   const [list, setList] = useState("");
   const [searchData, setSearchData] = useState([]);
-  const { itemsAdded, Data, isActiveOn, setIsActiveOn } = useContext(Context);
+  const { itemsAdded, Data, isActiveOn, setIsActiveOn,user } = useContext(Context);
   const navigate = useNavigate();
 
   const logout = () => {
@@ -54,7 +54,7 @@ const Navbar = () => {
         <h1 className="logo">Luxora</h1>
       </div>
 
-      {search ? (
+      {(search && user ) && active == 'product' ? (
         <div className="relative w-[65vw]">
           <input
             type="text"
@@ -63,7 +63,7 @@ const Navbar = () => {
             className="font-light px-2 outline-neutral-300 my-[0.9rem] w-full py-[0.49rem] border-[1px] border-gray-300"
             placeholder="Search products..."
           />
-          {searchData.length > 0 && (
+          {searchData.length > 0 &&  (
             <ul className="absolute bg-white border border-gray-300 w-full max-h-60 overflow-y-auto z-50">
               {searchData.map((item) => (
                 <>

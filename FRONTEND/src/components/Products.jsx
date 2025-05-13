@@ -51,10 +51,6 @@ const Products = (props) => {
       }
      if(location) Navigate('/buy');
     };
-  
-    useEffect(() => {
-      console.log(order);
-    }, [order]);
   return (
     <div id={id} className="card mt-5 border border-gray-300 rounded">
       <div className="card-img h-64 w-64 overflow-hidden">
