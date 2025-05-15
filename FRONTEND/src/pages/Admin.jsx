@@ -19,7 +19,6 @@ const Admin = () => {
     const fetchUser = async () => {
       const userData = await axios.get("https://e-commerce-site-en20.onrender.com/api/user/users");
       setUsers(userData.data);
-      console.log(users);
     };
     fetchUser();
   }, [users]);
