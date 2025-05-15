@@ -30,7 +30,10 @@ const Admin = () => {
       await axios.post("https://e-commerce-site-en20.onrender.com/api/user/users/update", {
         username: e.username,
         admin: !adminStatus,
-      });
+      },
+  {
+    withCredentials: true
+  });
     } else {
         setAlert(true);
         setTimeout(() => {
@@ -46,7 +49,10 @@ const Admin = () => {
       description:description,
       price:price,
       category:category
-    })
+    },
+  {
+    withCredentials: true
+  })
     Navigate('/product')
   }
   const removeItem = async (e) =>{
@@ -57,7 +63,10 @@ const Admin = () => {
       description:e.description,
       price:e.price,
       category:e.category
-    })
+    },
+  {
+    withCredentials: true
+  })
     Navigate('/product');
   }
   return (

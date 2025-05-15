@@ -18,7 +18,9 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://e-commerce-site-en20.onrender.com/api/products");
+        const response = await axios.get("https://e-commerce-site-en20.onrender.com/api/products",{
+          withCredentials: true
+        });
         setData(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -40,7 +42,9 @@ const ContextProvider = ({ children }) => {
       const fetchCart = async () => {
         try {
           const res = await axios.get(
-            `https://e-commerce-site-en20.onrender.com/api/products/cart/add?username=${user}`
+            `https://e-commerce-site-en20.onrender.com/api/products/cart/add?username=${user}`,{
+              withCredentials: true
+            }
           );
           console.log("Fetched Cart from DB:", res.data);
           setCart(res.data.cart || []);
@@ -61,7 +65,8 @@ const ContextProvider = ({ children }) => {
         try {
           await axios.post("https://e-commerce-site-en20.onrender.com/api/products/cart/add", {
             username: user,
-            cart,
+            cart},{
+            withCredentials: true
           });
         } catch (err) {
           console.error("Error saving cart:", err);
@@ -75,7 +80,9 @@ const ContextProvider = ({ children }) => {
   useEffect(()=>{
     const findEmail = async () => {
     const userEmail = await axios.post("https://e-commerce-site-en20.onrender.com/api/user/users/data",{
-      username : user
+      username : user,
+    },{
+      withCredentials: true
     })
     .then(obj => obj.data.email)
     setEmail(()=>userEmail);
@@ -87,7 +94,9 @@ const ContextProvider = ({ children }) => {
   useEffect(()=>{
     const adminStatus = async () => {
     const userData = await axios.post("https://e-commerce-site-en20.onrender.com/api/user/users/data",{
-      username : user
+      username : user,
+    },{
+      withCredentials: true
     })
     .then(obj => obj.data.admin)
     setAdmin(()=>userData);
