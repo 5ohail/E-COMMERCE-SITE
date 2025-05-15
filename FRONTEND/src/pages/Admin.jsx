@@ -17,7 +17,7 @@ const Admin = () => {
   const Navigate = useNavigate();
   useEffect(() => {
     const fetchUser = async () => {
-      const userData = await axios.get("http://localhost:8080/api/user/users");
+      const userData = await axios.get("https://e-commerce-site-en20.onrender.com/api/user/users");
       setUsers(userData.data);
       console.log(users);
     };
