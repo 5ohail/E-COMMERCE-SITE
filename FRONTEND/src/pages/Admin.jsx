@@ -17,10 +17,13 @@ const Admin = () => {
   const Navigate = useNavigate();
   useEffect(() => {
     const fetchUser = async () => {
-      const userData = await axios.get("https://e-commerce-site-en20.onrender.com/api/user/users");
+      const userData = await axios.get("https://e-commerce-site-en20.onrender.com/api/user/users",{
+        withCredentials: true
+      });
       setUsers(userData.data);
     };
     fetchUser();
+    console.log(users)
   }, [users]);
   const changeAdminStatus = async (e) => {
     if (e.username !== user) {
