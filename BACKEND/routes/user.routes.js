@@ -53,6 +53,29 @@ userRouter.post('/register', async (req, res) => {
     const user = await userModel.findOne({username:username});
     res.json(user);
   })
+  userRouter.get('/users',async(req,res)=>{
+    const allUser = await userModel.find({})
+    res.json(allUser)
+  })
+  userRouter.post('/users/update', async (req, res) => {
+  const { username, admin } = req.body;
+
+  try {
+    const updatedUser = await userModel.findOneAndUpdate(
+      { username },         // filter
+      { admin },            // update
+      { new: true }         // return updated document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(500).json({ message: "Update failed", error });
+  }
+});
 
 
   

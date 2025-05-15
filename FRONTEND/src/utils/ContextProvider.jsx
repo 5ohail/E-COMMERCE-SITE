@@ -13,6 +13,7 @@ const ContextProvider = ({ children }) => {
   const [cartFetched, setCartFetched] = useState(false); // 🆕 Added flag
   const [isActiveOn,setIsActiveOn] = useState(false);
   const [order,setOrder] = useState([]);
+  const [admin,setAdmin] = useState(false);
   // 🛍️ Fetch product data once on mount
   useEffect(() => {
     const fetchData = async () => {
@@ -75,15 +76,26 @@ const ContextProvider = ({ children }) => {
     const findEmail = async () => {
     const userEmail = await axios.post("http://localhost:8080/api/user/users/data",{
       username : user
-    }).then(obj => obj.data.email)
-    
+    })
+    .then(obj => obj.data.email)
     setEmail(()=>userEmail);
-    
+   
     
   }
   findEmail()
   },[user,email])
-
+  useEffect(()=>{
+    const adminStatus = async () => {
+    const userData = await axios.post("http://localhost:8080/api/user/users/data",{
+      username : user
+    })
+    .then(obj => obj.data.admin)
+    setAdmin(()=>userData);
+   
+    
+  }
+  adminStatus()
+  },[user])
 
   return (
     <Context.Provider
@@ -102,7 +114,9 @@ const ContextProvider = ({ children }) => {
         email,
         setEmail,
         order,
-        setOrder
+        setOrder,
+        admin,
+        setAdmin
       }}
     >
       {children}

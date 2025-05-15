@@ -7,9 +7,8 @@ const Navbar = () => {
   const [search, setSearch] = useState(false);
   const [list, setList] = useState("");
   const [searchData, setSearchData] = useState([]);
-  const { itemsAdded, Data, isActiveOn, setIsActiveOn,user } = useContext(Context);
+  const { itemsAdded, Data, isActiveOn, setIsActiveOn,user,admin } = useContext(Context);
   const navigate = useNavigate();
-
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -132,6 +131,24 @@ const Navbar = () => {
               CONTACT
             </Link>
           </li>
+          {admin ? (
+            <li>
+            <Link
+              onClick={() => {
+                setActive("admin");
+                setIsActiveOn(false);
+              }}
+              className={`text-[1rem] ${
+                active === "admin" && !isActiveOn
+                  ? "border-b-[1px] border-b-black"
+                  : ""
+              } px-3 py-2`}
+              to="/admin"
+            >
+              ADMIN
+            </Link>
+          </li>) 
+          : ""}
           <li>
             <Link
               onClick={() => {

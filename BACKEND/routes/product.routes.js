@@ -54,6 +54,21 @@ productRouter.get("/", async (req, res) => {
     res.status(500).json({ message: "Error fetching products" });
   }
 });
-
-
+productRouter.post("/add",async (req,res)=>{
+  const {name,brand,category,price,image,description} = req.body;
+  const addedProduct = await productModel.create({
+    name: name,
+    brand: brand,
+    category: category,
+    price: price,
+    image: image,
+    description: description
+  })
+  res.json(addedProduct);
+})
+productRouter.post("/remove",async (req,res)=>{
+  const {name} = req.body;
+  const removedProduct = await productModel.findOneAndDelete({name:name})
+  res.json(removedProduct)
+})
 export default productRouter;

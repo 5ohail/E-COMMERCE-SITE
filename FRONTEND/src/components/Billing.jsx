@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Context } from "../utils/ContextProvider";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 export default function Billing() {
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const [saveInfo, setSaveInfo] = useState(false);
@@ -15,7 +16,7 @@ export default function Billing() {
   const [phone,setPhone] = useState("");
   const [postal,setPostal] = useState("");
   const [country,setCountry] = useState("");
-
+  const Navigate = useNavigate();
   let total = 0;
   order.map((e) => (total += e.price));
   total = (total - (total * 0.2) ).toFixed(2)
@@ -37,7 +38,11 @@ export default function Billing() {
         country : country
       }
       
-    });
+      
+      
+    })
+    alert("order Succesfully placed")
+    Navigate('/product');;
   };
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">

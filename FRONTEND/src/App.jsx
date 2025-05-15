@@ -12,6 +12,9 @@ import Register from "./pages/Register";
 import ProductDetails from "./pages/ProductDetails";
 import UserDashboard from "./pages/UserDashboard";
 import Buy from "./pages/Buy";
+import AdminRoute from "./components/AdminRoute";
+import Admin from "./pages/Admin";
+
 function App() {
   return (
     <>
@@ -76,6 +79,14 @@ function App() {
             <ProtectedRoute>
              <Buy/>
           </ProtectedRoute>
+          }/>
+          {/* ADMIN ROUTE */}
+           <Route 
+          path="/admin"
+          element={
+            <AdminRoute>
+             <Admin/>
+          </AdminRoute>
           }/>
           
         </Routes>
