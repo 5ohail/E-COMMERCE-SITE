@@ -11,14 +11,10 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// ✅ Allowed origins (no trailing slash)
-const allowedOrigins = [
-  "https://e-commerce-site-one-lime.vercel.app"
-];
 
 // ✅ CORS middleware
 app.use(cors({
-  origin: "*",
+  origin: 'https://luxora-snowy.vercel.app',
   credentials: true
 }));
 
