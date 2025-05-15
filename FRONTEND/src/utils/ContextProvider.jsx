@@ -18,7 +18,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/products");
+        const response = await axios.get("https://e-commerce-site-en20.onrender.com/api/products");
         setData(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -40,7 +40,7 @@ const ContextProvider = ({ children }) => {
       const fetchCart = async () => {
         try {
           const res = await axios.get(
-            `http://localhost:8080/api/products/cart/add?username=${user}`
+            `https://e-commerce-site-en20.onrender.com/api/products/cart/add?username=${user}`
           );
           console.log("Fetched Cart from DB:", res.data);
           setCart(res.data.cart || []);
@@ -59,7 +59,7 @@ const ContextProvider = ({ children }) => {
     const saveCart = async () => {
       if (user && cartFetched) {
         try {
-          await axios.post("http://localhost:8080/api/products/cart/add", {
+          await axios.post("https://e-commerce-site-en20.onrender.com/api/products/cart/add", {
             username: user,
             cart,
           });
@@ -74,7 +74,7 @@ const ContextProvider = ({ children }) => {
 
   useEffect(()=>{
     const findEmail = async () => {
-    const userEmail = await axios.post("http://localhost:8080/api/user/users/data",{
+    const userEmail = await axios.post("https://e-commerce-site-en20.onrender.com/api/user/users/data",{
       username : user
     })
     .then(obj => obj.data.email)
@@ -86,7 +86,7 @@ const ContextProvider = ({ children }) => {
   },[user,email])
   useEffect(()=>{
     const adminStatus = async () => {
-    const userData = await axios.post("http://localhost:8080/api/user/users/data",{
+    const userData = await axios.post("https://e-commerce-site-en20.onrender.com/api/user/users/data",{
       username : user
     })
     .then(obj => obj.data.admin)

@@ -22,7 +22,7 @@ export default function Billing() {
   total = (total - (total * 0.2) ).toFixed(2)
   const formHandler = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/api/order", {
+    axios.post("https://e-commerce-site-en20.onrender.com/api/order", {
       username:user,
       orders: order,
       paymentMethod: paymentMethod,

@@ -27,7 +27,7 @@ const Admin = () => {
     if (e.username !== user) {
       const adminStatus = e.admin;
       console.log(adminStatus);
-      await axios.post("http://localhost:8080/api/user/users/update", {
+      await axios.post("https://e-commerce-site-en20.onrender.com/api/user/users/update", {
         username: e.username,
         admin: !adminStatus,
       });
@@ -39,7 +39,7 @@ const Admin = () => {
     };
   };
   const addProduct = async () =>{
-    await axios.post("http://localhost:8080/api/products/add",{
+    await axios.post("https://e-commerce-site-en20.onrender.com/api/products/add",{
       name:name,
       brand:brand,
       image:image,
@@ -50,7 +50,7 @@ const Admin = () => {
     Navigate('/product')
   }
   const removeItem = async (e) =>{
-     await axios.post("http://localhost:8080/api/products/remove",{
+     await axios.post("https://e-commerce-site-en20.onrender.com/api/products/remove",{
       name:e.name,
       brand:e.brand,
       image:e.image,
