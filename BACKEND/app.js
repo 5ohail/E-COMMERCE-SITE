@@ -18,14 +18,7 @@ const allowedOrigins = [
 
 // ✅ CORS middleware
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow non-browser tools like Postman (no origin)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: true,
   credentials: true
 }));
 
