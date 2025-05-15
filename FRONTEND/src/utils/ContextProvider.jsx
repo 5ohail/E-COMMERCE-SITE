@@ -82,8 +82,8 @@ const ContextProvider = ({ children }) => {
    
     
   }
-  findEmail()
-  },[user,email])
+  if (user)findEmail()
+  },[user])
   useEffect(()=>{
     const adminStatus = async () => {
     const userData = await axios.post("https://e-commerce-site-en20.onrender.com/api/user/users/data",{
