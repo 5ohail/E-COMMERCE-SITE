@@ -10,7 +10,7 @@ const app = express();
 dotenv.config();
 const port = process.env.PORT || 3000
 app.use(cors({
-  origin: "http://localhost:5173", // or "*" for all origins
+  origin: "hhttps://e-commerce-site-one-lime.vercel.app/", // or "*" for all origins
   credentials: true
 }))
 app.use(bodyParser.urlencoded({ extended: true }));
