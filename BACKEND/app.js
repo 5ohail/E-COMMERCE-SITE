@@ -14,7 +14,7 @@ const port = process.env.PORT || 3000;
 
 // ✅ CORS middleware
 app.use(cors({
-  origin: 'https://luxora-snowy.vercel.app',
+  origin: "*",
   credentials: true
 }));
 
