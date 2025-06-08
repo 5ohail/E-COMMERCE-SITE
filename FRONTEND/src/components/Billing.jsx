@@ -51,11 +51,11 @@ export default function Billing() {
       <div className="grid md:grid-cols-2 gap-8">
         {/* Billing Details */}
         <div>
-          <h2 className="text-3xl font-bold mb-8">Billing Details</h2>
+          <h2 className="lg:text-3xl text-xl font-bold mb-8">Billing Details</h2>
 
           <form className="space-y-6">
             <div>
-              <label htmlFor="firstName" className="block text-gray-600 mb-2">
+              <label htmlFor="firstName" className="block text-sm lg:text-base text-gray-600 mb-2">
                 First Name<span className="text-red-500">*</span>
               </label>
               <input
@@ -71,7 +71,7 @@ export default function Billing() {
             </div>
 
             <div>
-              <label htmlFor="companyName" className="block text-gray-600 mb-2">
+              <label htmlFor="companyName" className="block text-sm lg:text-base text-gray-600 mb-2">
                 Last Name<span className="text-red-500">*</span>
               </label>
               <input
@@ -89,7 +89,7 @@ export default function Billing() {
             <div>
               <label
                 htmlFor="streetAddress"
-                className="block text-gray-600 mb-2"
+                className="block text-sm lg:text-base text-gray-600 mb-2"
               >
                 Street Address<span className="text-red-500">*</span>
               </label>
@@ -107,7 +107,7 @@ export default function Billing() {
             </div>
 
             <div>
-              <label htmlFor="apartment" className="block text-gray-600 mb-2">
+              <label htmlFor="apartment" className="block text-sm lg:text-base text-gray-600 mb-2">
                 Apartment, floor, etc. (optional)
               </label>
               <input
@@ -123,7 +123,7 @@ export default function Billing() {
             </div>
 
             <div>
-              <label htmlFor="city" className="block text-gray-600 mb-2">
+              <label htmlFor="city" className="block text-sm lg:text-base text-gray-600 mb-2">
                 Town/City<span className="text-red-500">*</span>
               </label>
               <input
@@ -139,7 +139,7 @@ export default function Billing() {
               />
             </div>
             <div>
-              <label htmlFor="state" className="block text-gray-600 mb-2">
+              <label htmlFor="state" className="block text-sm lg:text-base text-gray-600 mb-2">
                 State<span className="text-red-500">*</span>
               </label>
               <input
@@ -156,7 +156,7 @@ export default function Billing() {
             </div>
 
             <div>
-              <label htmlFor="phone" className="block text-gray-600 mb-2">
+              <label htmlFor="phone" className="block text-sm lg:text-base text-gray-600 mb-2">
                 Phone Number<span className="text-red-500">*</span>
               </label>
               <input
@@ -173,7 +173,7 @@ export default function Billing() {
             </div>
 
             <div>
-              <label htmlFor="postalCode" className="block text-gray-600 mb-2">
+              <label htmlFor="postalCode" className="block text-sm lg:text-base text-gray-600 mb-2">
                 Postal Code<span className="text-red-500">*</span>
               </label>
               <input
@@ -191,7 +191,7 @@ export default function Billing() {
             
 
             <div>
-              <label htmlFor="country" className="block text-gray-600 mb-2">
+              <label htmlFor="country" className="block text-sm lg:text-base text-gray-600 mb-2">
                 Country<span className="text-red-500">*</span>
               </label>
               <input
@@ -212,9 +212,9 @@ export default function Billing() {
                 id="saveInfo"
                 checked={saveInfo}
                 onChange={() => setSaveInfo(!saveInfo)}
-                className="w-5 h-5 text-black border-gray-300 rounded"
+                className="lg:w-5 lg:h-5 h-4 w-4 text-black border-gray-300 rounded"
               />
-              <label htmlFor="saveInfo" className="ml-2 text-gray-700">
+              <label htmlFor="saveInfo" className="ml-2 text-xs lg:text-base text-gray-700">
                 Save this information for faster check-out next time
               </label>
             </div>
@@ -222,7 +222,7 @@ export default function Billing() {
         </div>
 
         {/* Order Summary */}
-        <div>
+        <div className="overflow-x-hidden">
           <div className="space-y-6 py-4 card-box">
             <div className={` mx-2 py-0.5 overflow-y-scroll ${order.length !=0 ? `h-[${order.length <= 5 ?order.length * 10 : 50}vh]`: ''} box`}>
               {order.length ?
@@ -319,7 +319,7 @@ export default function Billing() {
                 onChange={(e) => setCouponCode(e.target.value)}
                 className="flex-1 p-3 border border-gray-300 rounded"
               />
-              <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors">
+              <button className="bg-black text-white lg:text-base text-md px-4 py-2 rounded hover:bg-gray-800 transition-colors">
                 Apply Coupon
               </button>
             </div>

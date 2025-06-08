@@ -52,24 +52,24 @@ const Products = (props) => {
      if(location) Navigate('/buy');
     };
   return (
-    <div id={id} className="card mt-5 border border-gray-300 rounded">
-      <div className="card-img h-64 w-64 overflow-hidden">
+    <div id={id} className="card lg:mt-5 mt-2 border border-gray-300 lg:rounded rounded-md lg:pb-0 pb-1">
+      <div className="card-img lg:h-64 lg:w-64 h-42 w-42 overflow-hidden">
         <img src={src} className="h-64 w-64 object-cover object-top" alt="product" onClick={()=> handleRedirect(props)}/>
       </div>
-      <h1 className="font-semibold text-xl px-3 pt-2">{brand} {truncatedName}</h1>
-      <h4 className="text-md font-light text-gray-400 px-3">{category}</h4>
-      <h3 className="font-normal text-gray-700 px-3">${price}</h3>
-      <div className="flex justify-between items-center mx-3 my-3">
+      <h1 className="font-semibold lg:text-xl text-sm lg:px-3 lg:pt-2 px-1 pt-1">{brand} {truncatedName}</h1>
+      <h4 className="lg:text-md font-light text-xs text-gray-400 lg:px-3 px-1">{category}</h4>
+      <h3 className="font-normal text-xs lg:text-base text-gray-700 lg:px-3 px-1">${price}</h3>
+      <div className="flex lg:justify-between justify-center gap-5 lg:gap-0 items-center mx-1 my-1.5 lg:mx-3 lg:my-3">
         <button 
-          className="text-white bg-black px-3 py-2 rounded text-sm cursor-pointer"
+          className="text-white bg-black lg:px-3 lg:py-2 rounded-xs lg:rounded text-xs py-1 px-3 lg:text-sm cursor-pointer"
           onClick={()=>handleAddToCart(props)}
         >
-          Add to Cart
+          <span className="lg:inline hidden">Add to Cart</span> <span className="lg:hidden flex items-center gap-1"><img src="/bag.svg" alt="bag" className=" h-4 w-4" /> Cart</span>
         </button>
-        <button className="text-white bg-black px-3 py-2 rounded text-sm cursor-pointer"
+        <button className="text-white bg-black lg:px-3 lg:py-2 rounded-xs lg:rounded text-xs py-1 px-3 lg:text-sm cursor-pointer"
         onClick={()=>buyNow()}
         >
-          Buy Now
+          <span className="lg:inline hidden">Buy Now</span> <span className="lg:hidden flex items-center gap-1"><img src="/cash.svg" alt="bag" className="h-4 w-4" /> Buy</span>
         </button>
       </div>
     </div>

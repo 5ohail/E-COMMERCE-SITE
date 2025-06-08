@@ -6,7 +6,7 @@ const Product = () => {
    
   return (
     <>
-    <div className='flex w-auto flex-wrap my-14 gap-4 ml-14'>
+    <div className='flex w-auto flex-wrap lg:my-14 ml-3 gap-3 lg:gap-4 lg:ml-14'>
     {Data.map((item,index) => (
       <Products 
         key={index} 

@@ -12,7 +12,9 @@
         color: #fdfdfd;
     }
 
-    
+    body{
+        overflow-x: hidden;
+    }
 nav{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.097);
 }
@@ -55,4 +57,14 @@ nav{
 
 .box::-webkit-scrollbar{
     width: 0;
+}
+
+@media (max-width: 768px) {
+  .line{
+    display: none;
+  }
+  .main-txt{
+    line-height: 3rem;
+    font-size: 3.2rem;
+  }
 }

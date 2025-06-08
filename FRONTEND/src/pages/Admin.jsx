@@ -17,7 +17,7 @@ const Admin = () => {
   const Navigate = useNavigate();
   useEffect(() => {
     const fetchUser = async () => {
-      const userData = await axios.get("https://e-commerce-site-en20.onrender.com/api/user/users",{
+      const userData = await axios.get("http://localhost:8080/api/user/users",{
         withCredentials: true
       });
       setUsers(userData.data);
@@ -29,7 +29,7 @@ const Admin = () => {
     if (e.username !== user) {
       const adminStatus = e.admin;
       console.log(adminStatus);
-      await axios.post("https://e-commerce-site-en20.onrender.com/api/user/users/update", {
+      await axios.post("http://localhost:8080/api/user/users/update", {
         username: e.username,
         admin: !adminStatus,
       },
@@ -101,6 +101,15 @@ const Admin = () => {
         >
           Remove Product
         </h3>
+         <h3
+          className={`border-solid border-black border-[1px] ${
+            state == "Edit" ? "bg-black text-white" : ""
+          } py-2 px-20 rounded font-medium cursor-pointer card-box transition-colors duration-150 ease-in-out`}
+          onClick={() => setstate("Edit")}
+        >
+          Edit Product
+        </h3>
+
       </div>
       <div className=" flex justify-center mt-5">
         {state == "admin" ? (
@@ -255,6 +264,9 @@ const Admin = () => {
         ) : (
           ""
         )}
+        {state == "Edit" ? (<div className="card-box h-[70vh] w-[80vw] rounded-2xl">
+          
+        </div> ): ""}
       </div>
 
       {/* ALERT CARD */}

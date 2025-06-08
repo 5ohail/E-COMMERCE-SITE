@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import Admin from "../pages/Admin";
 
 export const Context = createContext();
 
@@ -18,7 +19,7 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://e-commerce-site-en20.onrender.com/api/products",{
+        const response = await axios.get("http://localhost:8080/api/products",{
           withCredentials: true
         });
         setData(response.data);
@@ -42,7 +43,7 @@ const ContextProvider = ({ children }) => {
       const fetchCart = async () => {
         try {
           const res = await axios.get(
-            `https://e-commerce-site-en20.onrender.com/api/products/cart/add?username=${user}`,{
+            `http://localhost:8080/api/products/cart/add?username=${user}`,{
               withCredentials: true
             }
           );
@@ -63,7 +64,7 @@ const ContextProvider = ({ children }) => {
     const saveCart = async () => {
       if (user && cartFetched) {
         try {
-          await axios.post("https://e-commerce-site-en20.onrender.com/api/products/cart/add", {
+          await axios.post("http://localhost:8080/api/products/cart/add", {
             username: user,
             cart},{
             withCredentials: true
@@ -79,7 +80,7 @@ const ContextProvider = ({ children }) => {
 
   useEffect(()=>{
     const findEmail = async () => {
-    const userEmail = await axios.post("https://e-commerce-site-en20.onrender.com/api/user/users/data",{
+    const userEmail = await axios.post("http://localhost:8080/api/user/users/data",{
       username : user,
     },{
       withCredentials: true
@@ -93,13 +94,14 @@ const ContextProvider = ({ children }) => {
   },[user])
   useEffect(()=>{
     const adminStatus = async () => {
-    const userData = await axios.post("https://e-commerce-site-en20.onrender.com/api/user/users/data",{
+    const userData = await axios.post("http://localhost:8080/api/user/users/data",{
       username : user,
     },{
       withCredentials: true
     })
     .then(obj => obj.data.admin)
     setAdmin(()=>userData);
+    
    
     
   }

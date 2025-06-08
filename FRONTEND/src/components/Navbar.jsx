@@ -15,6 +15,7 @@ const Navbar = () => {
     localStorage.removeItem("cart");
     navigate("/login");
   };
+ 
 
   const handleNavigate = (item) => {
     localStorage.setItem(
@@ -48,8 +49,9 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <nav className="bg-[#ffffff] text-[#000] flex justify-between items-center px-5 py-2 relative">
-      <div className="font-semibold text-3xl">
+    <>
+    <nav className="bg-[#ffffff] text-[#000] w-[100vw] flex justify-between items-center lg:px-5 px-3 py-2 fixed lg:relative ">
+      <div className="font-semibold text-lg lg:text-3xl">
         <h1 className="logo">Luxora</h1>
       </div>
 
@@ -85,14 +87,14 @@ const Navbar = () => {
           )}
         </div>
       ) : (
-        <ul className="list-none flex gap-8 justify-center items-center py-4">
+        <ul className="list-none lg:flex lg:gap-8 lg:justify-center lg:items-center lg:flex-row flex-col lg:py-4 hidden">
           <li>
             <Link
               onClick={() => {
                 setActive(null);
                 setIsActiveOn(false);
               }}
-              className={`text-[1rem] ${
+              className={`lg:text-[1rem] text-[0.7rem] ${
                 active === null && !isActiveOn
                   ? "border-b-[1px] border-b-black"
                   : ""
@@ -105,7 +107,7 @@ const Navbar = () => {
           <li>
             <Link
               onClick={() => setActive("product")}
-              className={`text-[1rem] ${
+              className={`lg:text-[1rem] text-[0.7rem] ${
                 active === "product" || isActiveOn
                   ? "border-b-[1px] border-b-black"
                   : ""
@@ -121,7 +123,7 @@ const Navbar = () => {
                 setActive("contact");
                 setIsActiveOn(false);
               }}
-              className={`text-[1rem] ${
+              className={`lg:text-[1rem] text-[0.7rem] ${
                 active === "contact" && !isActiveOn
                   ? "border-b-[1px] border-b-black"
                   : ""
@@ -138,7 +140,7 @@ const Navbar = () => {
                 setActive("admin");
                 setIsActiveOn(false);
               }}
-              className={`text-[1rem] ${
+              className={`lg:text-[1rem] text-[0.7rem] ${
                 active === "admin" && !isActiveOn
                   ? "border-b-[1px] border-b-black"
                   : ""
@@ -155,7 +157,7 @@ const Navbar = () => {
                 setActive("login");
                 setIsActiveOn(false);
               }}
-              className={`text-[1rem] rounded ${
+              className={`lg:text-[1rem] text-[0.7rem] rounded ${
                 active === "login" && !isActiveOn
                   ? "bg-black text-white"
                   : "text-black"
@@ -167,7 +169,7 @@ const Navbar = () => {
           </li>
           <Link
             onClick={logout}
-            className="text-[1rem] text-white bg-red-500 px-3 py-2 rounded"
+            className="lg:text-[1rem] text-[0.7rem] text-white bg-red-500 px-3 py-2 rounded"
             to="/login"
           >
             Log Out
@@ -175,7 +177,7 @@ const Navbar = () => {
         </ul>
       )}
 
-      <div className="accessories flex items-center gap-6 px-4">
+      <div className="accessories lg:flex lg:items-center lg:gap-6 lg:px-4 hidden">
         {search && list? 
         <img src='/remove.svg'
           className="absolute right-[22%] w-5 h-5 cursor-pointer"
@@ -211,6 +213,8 @@ const Navbar = () => {
         </Link>
       </div>
     </nav>
+    <div className=" w-[100vw] block lg:hidden px-3 py-7"></div>
+    </>
   );
 };
 
